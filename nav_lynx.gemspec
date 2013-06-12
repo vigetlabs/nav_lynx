@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Dan Tello", "Patrick Reagan", "Brian Landau"]
   s.email       = ["dan.tello@viget.com", "patrick.reagan@viget.com", "brian.landau@viget.com"]
   s.homepage    = "http://github.com/vigetlabs/nav_lynx"
-  s.summary     = "Helper to generate navigation links with a selected class."
-  s.description = "Helper to generate navigation links with a selected class."
+  s.summary     = "Rails helper to generate navigation links with a selected class."
+  s.description = "Rails helper to generate navigation links with a selected class."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
