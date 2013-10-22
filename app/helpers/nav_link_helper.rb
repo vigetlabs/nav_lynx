@@ -53,7 +53,11 @@ module NavLinkHelper
     end
 
     def current_controller
-      controller_for(@request.path)
+      if @request.method.to_s.upcase == "GET"
+        controller_for(@request.path)
+      else
+        Rails.application.routes.recognize_path(@request.path, :method => @request.method)[:controller]
+      end
     end
 
     def segment_for(controller, path)

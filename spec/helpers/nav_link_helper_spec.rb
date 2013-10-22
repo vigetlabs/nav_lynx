@@ -50,6 +50,11 @@ describe NavLinkHelper do
         subject.new(request, 'Hi', '/projects').to_html.should == '<a href="/projects" class="selected">Hi</a>'
       end
 
+      it "flags the link as current if the request method is POST instead of the default (GET)" do
+        request.stub(:fullpath => '/projects', :method => "POST")
+        subject.new(request, 'Hi', '/projects').to_html.should == '<a href="/projects" class="selected">Hi</a>'
+      end
+
       it "does not flag the link as current if there are parameters in the path" do
         request.stub(:fullpath).and_return('/projects?all=true')
         subject.new(request, 'Hi', '/projects').to_html.should == '<a href="/projects">Hi</a>'
@@ -77,7 +82,7 @@ describe NavLinkHelper do
           .should == '<li class="container"><a href="/projects">Hi</a></li>'
       end
 
-      it "provides a class for the wrapper when specified along with a selected class if neeeded" do
+      it "provides a class for the wrapper when specified along with a selected class if needed" do
         request.stub(:fullpath).and_return('/projects')
         subject.new(request, 'Hi', '/projects', {}, :wrapper => 'li', :wrapper_class => 'container').to_html
           .should == '<li class="selected container"><a href="/projects">Hi</a></li>'
