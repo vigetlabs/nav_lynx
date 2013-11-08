@@ -1,4 +1,6 @@
-## Behold, the nav_lynx:
+# nav_lynx
+
+[![Code Climate](https://codeclimate.com/github/vigetlabs/nav_lynx.png)](https://codeclimate.com/github/vigetlabs/nav_lynx)
 
 The nav_link_to helper works just like the standard Rails link_to helper, but adds a 'selected' class to your link (or its wrapper) if certain criteria are met. By default, if the link's destination url is the same url as the url of the current page, a default class of 'selected' is added to the link.
 
