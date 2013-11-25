@@ -32,6 +32,22 @@ module NavLinkHelper
 
     private
 
+    def link
+      link_to(@title, @path, html_options)
+    end
+
+    def html_options
+      selected? ? @html_options.merge(:class => link_classes) : @html_options
+    end
+
+    def selected?
+      paths_match? || segments_match?
+    end
+
+    def paths_match?
+      current_path == link_path
+    end
+
     def current_path
       comparable_path_for(@request.fullpath)
     end
@@ -40,20 +56,20 @@ module NavLinkHelper
       comparable_path_for(url_for(@path))
     end
 
-    def segment_position
-      if @options[:controller_segment]
-        @options[:controller_segment] - 1
-      elsif @options[:url_segment]
-        @options[:url_segment]
+    def comparable_path_for(path)
+      if @options[:ignore_params]
+        path.gsub(/\?.*/, '')
+      else
+        path
       end
     end
 
-    def path_controller
-      controller_for(@path)
+    def segments_match?
+      path_segment && path_segment == current_segment
     end
 
-    def current_controller
-      controller_for(@request.path)
+    def path_segment
+      segment_for(path_controller, current_path)
     end
 
     def segment_for(controller, path)
@@ -64,28 +80,28 @@ module NavLinkHelper
       end
     end
 
-    def path_segment
-      segment_for(path_controller, current_path)
+    def path_controller
+      controller_for(@path)
+    end
+
+    def segment_position
+      if @options[:controller_segment]
+        @options[:controller_segment] - 1
+      elsif @options[:url_segment]
+        @options[:url_segment]
+      end
+    end
+
+    def controller_for(path)
+      Rails.application.routes.recognize_path(path)[:controller]
     end
 
     def current_segment
       segment_for(current_controller, link_path)
     end
 
-    def paths_match?
-      current_path == link_path
-    end
-
-    def segments_match?
-      path_segment && path_segment == current_segment
-    end
-
-    def selected?
-      paths_match? || segments_match?
-    end
-
-    def selected_class
-      @options[:selected_class] || 'selected'
+    def current_controller
+      controller_for(@request.path)
     end
 
     def link_classes
@@ -96,12 +112,8 @@ module NavLinkHelper
       end
     end
 
-    def html_options
-      selected? ? @html_options.merge(:class => link_classes) : @html_options
-    end
-
-    def link
-      link_to(@title, @path, html_options)
+    def selected_class
+      @options[:selected_class] || 'selected'
     end
 
     def wrapper_classes
@@ -109,18 +121,6 @@ module NavLinkHelper
         "#{selected_class} #{@options[:wrapper_class]}"
       else
         @options[:wrapper_class]
-      end
-    end
-
-    def controller_for(path)
-      Rails.application.routes.recognize_path(path)[:controller]
-    end
-
-    def comparable_path_for(path)
-      if @options[:ignore_params]
-        path.gsub(/\?.*/, '')
-      else
-        path
       end
     end
   end
