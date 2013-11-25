@@ -94,6 +94,8 @@ module NavLinkHelper
 
     def controller_for(path)
       Rails.application.routes.recognize_path(path)[:controller]
+    rescue
+      nil
     end
 
     def current_segment

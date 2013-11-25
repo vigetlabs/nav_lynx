@@ -122,6 +122,14 @@ describe NavLinkHelper do
         subject.new(request, 'Hi', '/members/1', {}, :controller_segment => 1).to_html
           .should == '<a href="/members/1" class="selected">Hi</a>'
       end
+
+      it "handles the case when the current request path is a POST route & has no GET route" do
+        # scenario where a route exists only for POST, so GET fails
+        Rails.application.routes.stub(:recognize_path).with('/projects').and_raise(ActionController::RoutingError.new("No route matches '/projects'"))
+
+        request.stub(:fullpath => '/projects/something')
+        subject.new(request, 'Hi', '/projects').to_html.should == '<a href="/projects">Hi</a>'
+      end
     end
   end
 end
