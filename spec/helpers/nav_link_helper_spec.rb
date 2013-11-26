@@ -125,9 +125,10 @@ describe NavLinkHelper do
 
       it "handles the case when the current request path is a POST route & has no GET route" do
         # scenario where a route exists only for POST, so GET fails
-        Rails.application.routes.stub(:recognize_path).with('/projects').and_raise(ActionController::RoutingError.new("No route matches '/projects'"))
+        Rails.application.routes.stub(:recognize_path).with('/projects/something').and_raise(ActionController::RoutingError.new("No route matches '/projects'"))
+        Rails.application.routes.stub(:recognize_path).with('/projects').and_return(:controller => 'projects', :action => 'index')
 
-        request.stub(:fullpath => '/projects/something')
+        request.stub(:fullpath => '/projects/something', :path => '/projects/something')
         subject.new(request, 'Hi', '/projects').to_html.should == '<a href="/projects">Hi</a>'
       end
     end
