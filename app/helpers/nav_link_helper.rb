@@ -2,22 +2,26 @@ module NavLinkHelper
 
   def nav_link_to(*args, &block)
     title = block_given? ? capture(&block) : args.shift
-    path         = args[0]
+    url_options  = args[0]
     html_options = args[1] || {}
     options      = args[2] || {}
 
-    LinkGenerator.new(request, title, path, html_options, options).to_html
+    LinkGenerator.new(request, title, url_options, html_options, options, controller).to_html
   end
 
   class LinkGenerator
     include ActionView::Helpers::UrlHelper
+    include Rails.application.routes.url_helpers
 
-    def initialize(request, title, path, html_options = {}, options = {})
+    attr_reader :controller
+
+    def initialize(request, title, url_options, html_options = {}, options = {}, controller)
       @request      = request
       @title        = title
-      @path         = path
+      @url_options  = url_options
       @html_options = html_options
       @options      = options
+      @controller   = controller
     end
 
     def to_html
@@ -33,7 +37,7 @@ module NavLinkHelper
     private
 
     def link
-      link_to(@title, @path, html_options)
+      link_to(@title, @url_options, html_options)
     end
 
     def html_options
@@ -53,7 +57,8 @@ module NavLinkHelper
     end
 
     def link_path
-      comparable_path_for(url_for(@path))
+      path = url_for(@url_options)
+      comparable_path_for(path)
     end
 
     def comparable_path_for(path)
@@ -81,7 +86,11 @@ module NavLinkHelper
     end
 
     def path_controller
-      controller_for(@path)
+      if @url_options.is_a?(Hash) && @url_options[:controller]
+        @url_options[:controller]
+      else
+        controller_for(url_for(@url_options))
+      end
     end
 
     def segment_position
