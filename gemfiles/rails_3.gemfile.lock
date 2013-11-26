@@ -1,5 +1,5 @@
 PATH
-  remote: .
+  remote: /Users/brianlandau/Projects/viget/nav_lynx
   specs:
     nav_lynx (1.0.0)
       rails (>= 3.2.13)
@@ -129,6 +129,7 @@ DEPENDENCIES
   capybara
   jquery-rails
   nav_lynx!
+  rails (~> 3.2)
   rspec-html-matchers
   rspec-rails
   sqlite3
