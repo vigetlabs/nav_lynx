@@ -6,7 +6,7 @@ module NavLinkHelper
     html_options = args[1] || {}
     options      = args[2] || {}
 
-    LinkGenerator.new(request, title, url_options, html_options, options, controller).to_html
+    LinkGenerator.new(request, title, url_options, controller,html_options, options).to_html
   end
 
   class LinkGenerator
@@ -15,7 +15,7 @@ module NavLinkHelper
 
     attr_reader :controller
 
-    def initialize(request, title, url_options, html_options = {}, options = {}, controller)
+    def initialize(request, title, url_options, controller, html_options = {}, options = {})
       @request      = request
       @title        = title
       @url_options  = url_options
