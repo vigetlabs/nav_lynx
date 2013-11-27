@@ -1,7 +1,7 @@
 PATH
   remote: /Users/brianlandau/Projects/viget/nav_lynx
   specs:
-    nav_lynx (1.0.0)
+    nav_lynx (1.1.0)
       rails (>= 3.2.13)
 
 GEM
