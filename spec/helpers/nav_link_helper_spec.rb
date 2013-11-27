@@ -38,6 +38,7 @@ describe NavLinkHelper do
     describe '#to_html' do
       subject { described_class::LinkGenerator }
       let(:request){ helper.request }
+      after { NavLYNX.selected_class = 'selected' }
 
       it "outputs a simple link when appropriate" do
         subject.new(request, 'Hi', '/projects', controller).to_html.should == '<a href="/projects">Hi</a>'
@@ -50,6 +51,12 @@ describe NavLinkHelper do
       it "knows when to flag the link as current" do
         request.stub(:fullpath).and_return('/projects')
         subject.new(request, 'Hi', '/projects', controller).to_html.should have_tag("a.selected[href='/projects']", :text => "Hi")
+      end
+
+      it "knows use a globally defined selected class different from the default" do
+        NavLYNX.selected_class = 'current'
+        request.stub(:fullpath).and_return('/projects')
+        subject.new(request, 'Hi', '/projects', controller).to_html.should have_tag("a.current[href='/projects']", :text => "Hi")
       end
 
       it "does not flag the link as current if there are parameters in the path" do

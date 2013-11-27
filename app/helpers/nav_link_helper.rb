@@ -124,7 +124,7 @@ module NavLinkHelper
     end
 
     def selected_class
-      @options[:selected_class] || 'selected'
+      @options[:selected_class] || NavLYNX.selected_class
     end
 
     def wrapper_classes
