@@ -1,8 +1,12 @@
 ENV["RAILS_ENV"] ||= 'test'
+require 'coveralls'
+Coveralls.wear! 'rails'
 
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'capybara/rails'
+require 'capybara/rspec'
 require 'rspec-html-matchers'
 
 Rails.backtrace_cleaner.remove_silencers!
