@@ -147,12 +147,12 @@ PLATFORMS
 
 DEPENDENCIES
   appraisal
-  capybara (~> 2.1)
+  capybara (~> 2.2.0)
   coveralls
   jquery-rails
   nav_lynx!
   rails (~> 3.1.0)
   rake
-  rspec-html-matchers
-  rspec-rails
+  rspec-html-matchers (< 0.6.0)
+  rspec-rails (~> 2.12, < 2.99.0.beta1)
   sqlite3
