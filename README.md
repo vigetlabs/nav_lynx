@@ -8,9 +8,11 @@ The nav_link_to helper works just like the standard Rails link_to helper, but ad
 
 When `my_path` is the same as the current page url, this outputs:
 
-    <a class="selected" href="http://example.com/page">My Page</a>
+    <a class="selected" href="/page">My Page</a>
 
 For more options and full usage details, see: http://viget.com/extend/rails-selected-nav-link-helper
+
+Currenty NavLYNX only supports `_path` URL helpers, full `_url`'s will not match the current link correctly.
 
 ### Usage with blocks:
 
