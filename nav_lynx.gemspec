@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   # s.add_dependency "jquery-rails"
 
   s.add_development_dependency "sqlite3"
-  s.add_development_dependency 'rspec-rails', '~> 2.12', '< 2.99.0.beta1'
+  s.add_development_dependency 'rspec-rails', '~> 2.14.0'
   s.add_development_dependency 'capybara', '~> 2.2.0'
   s.add_development_dependency 'appraisal'
   s.add_development_dependency 'rspec-html-matchers', '< 0.6.0'

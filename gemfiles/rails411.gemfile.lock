@@ -150,5 +150,5 @@ DEPENDENCIES
   rails (= 4.1.1)
   rake
   rspec-html-matchers (< 0.6.0)
-  rspec-rails (~> 2.12, < 2.99.0.beta1)
+  rspec-rails (~> 2.14.0)
   sqlite3
