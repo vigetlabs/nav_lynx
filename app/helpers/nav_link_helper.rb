@@ -26,9 +26,8 @@ module NavLinkHelper
 
     def to_html
       html = link
-
-      if @options[:wrapper]
-        html = content_tag(@options[:wrapper], html, :class => wrapper_classes)
+      if wrapper
+        html = content_tag(wrapper, html, :class => wrapper_classes)
       end
 
       html.html_safe
@@ -127,11 +126,27 @@ module NavLinkHelper
       @options[:selected_class] || NavLYNX.selected_class
     end
 
+    def wrapper
+      if @options[:wrapper] == false
+        nil
+      else
+        @options[:wrapper] || NavLYNX.wrapper
+      end
+    end
+
+    def wrapper_class
+      if @options[:wrapper_class] == false
+        nil
+      else
+        @options[:wrapper_class] || NavLYNX.wrapper_class
+      end
+    end
+
     def wrapper_classes
       if selected?
-        "#{selected_class} #{@options[:wrapper_class]}"
+        "#{selected_class} #{wrapper_class}"
       else
-        @options[:wrapper_class]
+        wrapper_class
       end
     end
   end
