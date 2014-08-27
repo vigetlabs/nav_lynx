@@ -129,6 +129,7 @@ module NavLinkHelper
 
     def wrapper_classes
       if selected?
+        return selected_class if @options[:wrapper_class].blank?
         "#{selected_class} #{@options[:wrapper_class]}"
       else
         @options[:wrapper_class]

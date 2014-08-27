@@ -86,6 +86,12 @@ describe NavLinkHelper do
           .should == '<li class="container"><a href="/projects">Hi</a></li>'
       end
 
+      it "provides a class for the selected wrapper when specified" do
+        request.stub(:fullpath).and_return('/projects')
+        subject.new(request, 'Hi', '/projects', controller, {}, {:wrapper => 'li', :selected_class => 'special-selected'}).to_html
+          .should == '<li class="special-selected"><a href="/projects">Hi</a></li>'
+      end
+
       it "provides a class for the wrapper when specified along with a selected class if neeeded" do
         request.stub(:fullpath).and_return('/projects')
         subject.new(request, 'Hi', '/projects', controller, {}, {:wrapper => 'li', :wrapper_class => 'container'}).to_html
