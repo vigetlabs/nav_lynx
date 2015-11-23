@@ -1,6 +1,6 @@
 # NavLYNX
 
-[![Code Climate](https://codeclimate.com/github/vigetlabs/nav_lynx.png)](https://codeclimate.com/github/vigetlabs/nav_lynx) [![Build Status](https://travis-ci.org/vigetlabs/nav_lynx.png?branch=master)](https://travis-ci.org/vigetlabs/nav_lynx) [![Coverage Status](https://coveralls.io/repos/vigetlabs/nav_lynx/badge.png?branch=master)](https://coveralls.io/r/vigetlabs/nav_lynx?branch=master) [![Gem Version](https://badge.fury.io/rb/nav_lynx.png)](http://badge.fury.io/rb/nav_lynx) [![Dependency Status](https://gemnasium.com/vigetlabs/nav_lynx.png)](https://gemnasium.com/vigetlabs/nav_lynx)
+[![Code Climate](https://codeclimate.com/github/vigetlabs/nav_lynx.png)](https://codeclimate.com/github/vigetlabs/nav_lynx) [![Build Status](https://travis-ci.org/vigetlabs/nav_lynx.png?branch=master)](https://travis-ci.org/vigetlabs/nav_lynx) [![Coverage Status](https://coveralls.io/repos/vigetlabs/nav_lynx/badge.png?branch=master)](https://coveralls.io/r/vigetlabs/nav_lynx?branch=master) [![Gem Version](https://badge.fury.io/rb/nav_lynx.png)](http://badge.fury.io/rb/nav_lynx)
 
 NavLYNX provides a `nav_link_to` helper that works just like the standard Rails `link_to` helper, but adds a `selected` class to your link (or its wrapper) if certain criteria are met. By default, if the link's destination url is the same url as the url of the current page, a default class of 'selected' is added to the link.
 

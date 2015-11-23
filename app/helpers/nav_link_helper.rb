@@ -127,6 +127,7 @@ module NavLinkHelper
     end
 
     def wrapper
+      # Setting this option to false allows to disable the global wrapper option.
       if @options[:wrapper] == false
         nil
       else
@@ -135,6 +136,7 @@ module NavLinkHelper
     end
 
     def wrapper_class
+      # Setting this option to false allows to disable the global wrapper_class option.
       if @options[:wrapper_class] == false
         nil
       else
@@ -144,6 +146,7 @@ module NavLinkHelper
 
     def wrapper_classes
       if selected?
+        return selected_class if wrapper_class.blank?
         "#{selected_class} #{wrapper_class}"
       else
         wrapper_class
