@@ -39,7 +39,8 @@ Same usage as `link_to`:
 
 ## Config option
 
-There is one config option `selected_class`. If you want a different class then "selected" for selected nav items globally you can use this option to change that. You can set this inside your configuration in `config/application.rb` of your Rails application like so:
+There are a few config options: `selected_class`, `wrapper` and `wrapper_class`.
+If you want a different class then "selected" for selected nav items globally you can use this option to change that. You can set this inside your configuration in `config/application.rb` of your Rails application like so:
 
 ```rb
 module MyApplication
@@ -47,6 +48,8 @@ module MyApplication
     # ...
 
     config.nav_lynx.selected_class = 'current'
+    config.nav_lynx.wrapper = 'li'
+    config.nav_lynx.wrapper_class = 'wrapper'
   end
 end
 ```
