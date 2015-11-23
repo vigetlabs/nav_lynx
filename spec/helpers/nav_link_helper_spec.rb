@@ -98,6 +98,38 @@ describe NavLinkHelper do
           .should == '<li class="selected container"><a href="/projects">Hi</a></li>'
       end
 
+      context "when the global wrapper and wrapper_class options are set" do
+        after do
+          NavLYNX.wrapper = nil
+          NavLYNX.wrapper_class = nil
+        end
+
+        it "generates a wrapper for the link when specified" do
+          NavLYNX.wrapper = 'li'
+
+          subject.new(request, 'Hi', '/projects', controller).to_html
+              .should == '<li><a href="/projects">Hi</a></li>'
+        end
+
+        context "when the local wrapper and wrapper_class options are set to false" do
+          it "outputs a simple link" do
+            NavLYNX.wrapper = 'li'
+            NavLYNX.wrapper_class = 'container'
+
+            subject.new(request, 'Hi', '/projects', controller, {}, {wrapper: false, wrapper_class: false}).to_html
+                .should == '<a href="/projects">Hi</a>'
+          end
+        end
+
+        it "generates a wrapper with a class for the link when specified" do
+          NavLYNX.wrapper = 'li'
+          NavLYNX.wrapper_class = 'container'
+
+          subject.new(request, 'Hi', '/projects', controller).to_html
+              .should == '<li class="container"><a href="/projects">Hi</a></li>'
+        end
+      end
+
       it "allows specification of the link classes" do
         subject.new(request, 'Hi', '/projects', controller, {:class => 'one two'}, {}).to_html
           .should have_tag("a.one.two[href='/projects']", :text => "Hi")
