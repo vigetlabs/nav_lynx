@@ -118,3 +118,11 @@ If you want to specify additional classes for your wrapper (whether it is select
 ## Copyright
 Copyright (c) 2014 Viget. See MIT_LICENSE for further details.
 Born on Aug 8, 2012 in this [blog post](http://viget.com/extend/rails-selected-nav-link-helper).
+
+***
+
+<a href="http://code.viget.com">
+  <img src="http://code.viget.com/github-banner.png" alt="Code At Viget">
+</a>
+
+Visit [code.viget.com](http://code.viget.com) to see more projects from [Viget.](https://viget.com)
