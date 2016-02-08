@@ -26,9 +26,8 @@ module NavLinkHelper
 
     def to_html
       html = link
-
-      if @options[:wrapper]
-        html = content_tag(@options[:wrapper], html, :class => wrapper_classes)
+      if wrapper
+        html = content_tag(wrapper, html, :class => wrapper_classes)
       end
 
       html.html_safe
@@ -127,12 +126,30 @@ module NavLinkHelper
       @options[:selected_class] || NavLYNX.selected_class
     end
 
+    def wrapper
+      # Setting this option to false allows to disable the global wrapper option.
+      if @options[:wrapper] == false
+        nil
+      else
+        @options[:wrapper] || NavLYNX.wrapper
+      end
+    end
+
+    def wrapper_class
+      # Setting this option to false allows to disable the global wrapper_class option.
+      if @options[:wrapper_class] == false
+        nil
+      else
+        @options[:wrapper_class] || NavLYNX.wrapper_class
+      end
+    end
+
     def wrapper_classes
       if selected?
-        return selected_class if @options[:wrapper_class].blank?
-        "#{selected_class} #{@options[:wrapper_class]}"
+        return selected_class if wrapper_class.blank?
+        "#{selected_class} #{wrapper_class}"
       else
-        @options[:wrapper_class]
+        wrapper_class
       end
     end
   end
